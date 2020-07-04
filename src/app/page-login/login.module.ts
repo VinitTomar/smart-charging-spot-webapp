@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule } from '@angular/material';
+
 import { LoginRoutingModule } from './login-routing.module';
 import { BaseLoginComponent } from './components/base-login/base-login.component';
 
@@ -9,7 +11,11 @@ import { BaseLoginComponent } from './components/base-login/base-login.component
   declarations: [BaseLoginComponent],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ]
 })
 export class LoginModule { }
