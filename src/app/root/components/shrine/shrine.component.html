@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a href="/" [routerLink]="['/']">SCS</a>
+    <span>
+      <a href="/login" [routerLink]="['/login']">Login</a>
+      /
+      <a href="/signup" [routerLink]="['/signup']">Sign up</a>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -5,13 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './root/components/home/home.component';
 import { AddBearerToken, ServerErrorHandler } from './root/interceptors';
+import { HomeComponent, NotFoundComponent, ShrineComponent } from './root';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    ShrineComponent,
+    HomeComponent,
+    NotFoundComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -30,6 +32,6 @@ import { AddBearerToken, ServerErrorHandler } from './root/interceptors';
       multi: true
     }
   ],
-  bootstrap: [HomeComponent]
+  bootstrap: [ShrineComponent]
 })
 export class AppModule { }

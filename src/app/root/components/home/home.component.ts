@@ -8,11 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _route: Router) {
-    this._route.events.subscribe(event => {
-      console.log({ event });
-    })
-  }
+  constructor() { }
 
   ngOnInit() {
   }

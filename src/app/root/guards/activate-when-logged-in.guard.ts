@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+
+import { UserService } from '../services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivateWhenLoggedInGuard implements CanActivate, CanLoad {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+
+  constructor(private _userService: UserService, private _router: Router) { }
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): UrlTree | boolean {
+    if (this._userService.userLoggedIn) {
+      return true;
+    }
+
+    return this._router.createUrlTree(['notfound'],
+      {
+        replaceUrl: false,
+        skipLocationChange: true,
+      }
+    );
   }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+
+  canLoad(route: Route, segments: UrlSegment[]): boolean {
+    return this._userService.userLoggedIn;
   }
 }
