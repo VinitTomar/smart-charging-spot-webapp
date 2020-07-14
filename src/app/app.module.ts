@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AddBearerToken, ServerErrorHandler } from './root/interceptors';
-import { HomeComponent, NotFoundComponent, ShrineComponent } from './root';
+import {
+  HomeComponent, NotFoundComponent, ShrineComponent, AddBearerToken, ServerErrorHandler
+} from './root';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HomeComponent, NotFoundComponent, ShrineComponent } from './root';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    HttpClientModule
   ],
   providers: [
     {

@@ -9,7 +9,11 @@ export class AddBearerToken implements HttpInterceptor {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const newUrl = 'http://localhost:3000/' + req.url
+    const newReq: HttpRequest<any> = req.clone({
+      url: newUrl
+    })
 
-    return next.handle(req);
+    return next.handle(newReq);
   }
 }

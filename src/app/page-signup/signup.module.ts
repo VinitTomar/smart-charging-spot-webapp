@@ -5,12 +5,15 @@ import { MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule } fr
 
 import { SignupRoutingModule } from './signup-routing.module';
 import { BaseSignupComponent } from './components/base-signup/base-signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [BaseSignupComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SignupRoutingModule,
     MatCardModule,
     MatInputModule,

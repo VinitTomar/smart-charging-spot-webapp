@@ -1,23 +1,27 @@
-<mat-card class="form-card">
+<mat-card class="form-card" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
-    <input type="text" placeholder="Username" matInput>
+    <input type="text" placeholder="Username" matInput formControlName="username">
+    <mat-error>{{usernameError}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Full Name</mat-label>
-    <input type="text" placeholder="Full Name" matInput>
+    <input type="text" placeholder="Full Name" matInput formControlName="fullname">
+    <mat-error>{{fullnameError}}</mat-error>
   </mat-form-field>
 
 
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input type="text" placeholder="Email" matInput>
+    <input type="text" placeholder="Email" matInput formControlName="email">
+    <mat-error>{{emailError}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input type="password" placeholder="Password" matInput>
+    <input type="password" placeholder="Password" matInput formControlName="password">
+    <mat-error>{{passwordError}}</mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary">Sign Up</button>
+  <button mat-raised-button color="primary" (click)="register()" [disabled]="registrationInProgress">Sign Up</button>
 </mat-card>
