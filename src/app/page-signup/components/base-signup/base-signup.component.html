@@ -16,6 +16,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input type="text" placeholder="Email" matInput formControlName="email">
+    <mat-hint *ngIf="emailFC.pending">Checking email availability...</mat-hint>
     <mat-error>{{emailError}}</mat-error>
   </mat-form-field>
 

@@ -39,13 +39,13 @@ export class AvailibiltyCheckerValidator {
 
   checkUsernameAvailability() {
     return this._checkAvailability((username: string) => {
-      return this._http.get('available/username', { params: { value: username } });
+      return this._http.get(`available/username/${username}`);
     });
   }
 
   checkEmailAvailability() {
     return this._checkAvailability((email: string) => {
-      return this._http.get('available/email', { params: { value: email } });
+      return this._http.get(`available/email/${email}`);
     });
   }
 }
