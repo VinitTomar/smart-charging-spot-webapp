@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AddBearerToken } from './add-bearer-token.service';
+import { ProxyInterceptor } from './proxy.service';
 
-describe('AddBearerToken', () => {
+describe('ProxyInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AddBearerToken = TestBed.get(AddBearerToken);
+    const service: ProxyInterceptor = TestBed.get(ProxyInterceptor);
     expect(service).toBeTruthy();
   });
 });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../service/signup.service';
+import { AvailibiltyCheckerValidator } from '../../validators/availability-checker';
 
 @Component({
   selector: 'scs-base-signup',
@@ -18,7 +19,8 @@ export class BaseSignupComponent implements OnInit {
   get usernameError() {
     return this.usernameFC.hasError('required') ? 'Username is required'
       : this.usernameFC.hasError('pattern') ? 'Only alphanumeric, with underscore, allowed.'
-        : this.usernameFC.hasError('maxlength') ? 'Maximum 100 characters allowed' : '';
+        : this.usernameFC.hasError('maxlength') ? 'Maximum 100 characters allowed'
+          : this.usernameFC.hasError('notAvailable') ? 'Username not available.' : '';
   }
 
   get fullnameFC() {
@@ -36,7 +38,8 @@ export class BaseSignupComponent implements OnInit {
   get emailError() {
     return this.emailFC.hasError('required') ? 'Email is required'
       : this.emailFC.hasError('pattern') ? 'Invalid email address.'
-        : this.emailFC.hasError('maxlength') ? 'Maximum 250 characters allowed' : '';
+        : this.emailFC.hasError('maxlength') ? 'Maximum 250 characters allowed'
+          : this.emailFC.hasError('notAvailable') ? 'Email not available.' : '';
   }
 
   get passwordFC() {
@@ -51,26 +54,37 @@ export class BaseSignupComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _signup: SignupService
+    private _signup: SignupService,
+    private _chkValidator: AvailibiltyCheckerValidator
   ) { }
 
   ngOnInit() {
     this.form = this._fb.group({
-      'username': [, [
-        Validators.required,
-        Validators.pattern(/^[\w]+$/),
-        Validators.maxLength(100),
-      ]],
+      'username': [,
+        [
+          Validators.required,
+          Validators.pattern(/^[\w]+$/),
+          Validators.maxLength(100),
+        ],
+        [
+          this._chkValidator.checkUsernameAvailability()
+        ]
+      ],
       'fullname': [, [
         Validators.required,
         Validators.pattern(/^[a-zA-Z ]+$/),
         Validators.maxLength(150),
       ]],
-      'email': [, [
-        Validators.required,
-        Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/),
-        Validators.maxLength(250),
-      ]],
+      'email': [,
+        [
+          Validators.required,
+          Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/),
+          Validators.maxLength(250),
+        ],
+        [
+          this._chkValidator.checkEmailAvailability()
+        ]
+      ],
       'password': [, [
         Validators.required,
         Validators.minLength(3),

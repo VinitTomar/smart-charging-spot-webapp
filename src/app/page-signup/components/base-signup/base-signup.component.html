@@ -2,6 +2,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
     <input type="text" placeholder="Username" matInput formControlName="username">
+    <mat-hint *ngIf="usernameFC.pending">Checking username availability...</mat-hint>
     <mat-error>{{usernameError}}</mat-error>
   </mat-form-field>
 
