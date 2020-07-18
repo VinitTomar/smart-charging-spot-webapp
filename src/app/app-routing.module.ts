@@ -21,7 +21,8 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./page-profile/profile.module').then(m => m.ProfileModule),
-    canActivate: [ActivateWhenLoggedInGuard]
+    canActivate: [ActivateWhenLoggedInGuard],
+    canLoad: [ActivateWhenLoggedInGuard]
   },
   {
     path: "**",

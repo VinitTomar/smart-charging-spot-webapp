@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService, User } from 'src/app/root';
 
 @Component({
   selector: 'scs-base-profile',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BaseProfileComponent implements OnInit {
 
-  constructor() { }
+  profile: User;
+
+  constructor(
+    private _usrSer: UserService
+  ) { }
 
   ngOnInit() {
+    this.profile = this._usrSer.details;
   }
 
 }

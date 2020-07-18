@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import {
-  HomeComponent, NotFoundComponent, ShrineComponent, AddBearerToken, ServerErrorHandler, ProxyInterceptor
+  HomeComponent, NotFoundComponent, ShrineComponent, ServerErrorHandler, ProxyInterceptor, AddBearerToken, JwtErrorHandlerService
 } from './root';
 
 
@@ -31,6 +31,11 @@ import {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddBearerToken,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtErrorHandlerService,
       multi: true
     },
     {

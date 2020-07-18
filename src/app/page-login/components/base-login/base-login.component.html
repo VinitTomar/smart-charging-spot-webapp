@@ -1,11 +1,18 @@
-<mat-card class="form-card">
+<mat-card class="form-card" [formGroup]="form">
+
   <mat-form-field appearance="outline">
-    <mat-label>Username/Email</mat-label>
-    <input type="text" placeholder="Username/Email" matInput>
+    <mat-label>Username</mat-label>
+    <input type="text" placeholder="Username" matInput formControlName="username">
+    <mat-error>{{usernameErr}}</mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input type="password" placeholder="Password" matInput>
+    <input type="password" placeholder="Password" matInput formControlName="password">
+    <mat-error>{{passwordErr}}</mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary">Login</button>
+
+  <button mat-raised-button color="primary" [disabled]="submittionInProgress" (click)="submit()">
+    Login
+  </button>
 </mat-card>

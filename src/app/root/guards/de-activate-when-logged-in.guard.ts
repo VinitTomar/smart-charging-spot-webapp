@@ -15,7 +15,7 @@ export class DeActivateWhenLoggedInGuard implements CanActivate, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-    if (!this._userService.userLoggedIn) {
+    if (!this._userService.loggedIn) {
       return true;
     }
 
@@ -24,6 +24,6 @@ export class DeActivateWhenLoggedInGuard implements CanActivate, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): boolean {
-    return !this._userService.userLoggedIn;
+    return !this._userService.loggedIn;
   }
 }

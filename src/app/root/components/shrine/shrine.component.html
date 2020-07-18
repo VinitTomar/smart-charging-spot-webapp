@@ -1,11 +1,23 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <a href="/" [routerLink]="['/']">SCS</a>
-    <span>
-      <a href="/login" [routerLink]="['/login']">Login</a>
-      /
-      <a href="/signup" [routerLink]="['/signup']">Sign up</a>
+    <a href="/" [routerLink]="['/']" class="menu-item">SCS</a>
+    <span class="menu-items">
+      <ng-container *ngIf="!isUserLoggedInd">
+        <a href="/login" [routerLink]="['/login']" class="menu-item" routerLinkActive="menu-item--active">Login</a>
+
+        <a href="/signup" [routerLink]="['/signup']" class="menu-item" routerLinkActive="menu-item--active">Sign up</a>
+      </ng-container>
+
+      <ng-container *ngIf="isUserLoggedInd">
+        <a href="/login" [routerLink]="['/']" class="menu-item" routerLinkActive="menu-item--active"
+          [routerLinkActiveOptions]="{exact:true}">Home</a>
+
+        <a href="/signup" [routerLink]="['/profile']" class="menu-item" routerLinkActive="menu-item--active">Profile</a>
+        <a href="javascript:void(0);" class="menu-item" (click)="logout()">Logout</a>
+      </ng-container>
+
     </span>
+
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

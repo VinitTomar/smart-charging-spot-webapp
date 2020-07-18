@@ -9,8 +9,10 @@ export class ProxyInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const newUrl = 'http://localhost:3000/' + req.url;
-    req.headers.set('Content-Type', 'application/json');
     const newReq: HttpRequest<any> = req.clone({
+      setHeaders: {
+        'Content-Type': 'application/json'
+      },
       url: newUrl
     })
     return next.handle(newReq);
