@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { LoginService } from '../../service/login.service';
-import { UserService } from 'src/app/root';
+import { UserService } from 'src/app/root/services';
 
 @Component({
   selector: 'scs-base-login',

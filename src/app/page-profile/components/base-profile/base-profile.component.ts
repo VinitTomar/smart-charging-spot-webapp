@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { UserService, User } from 'src/app/root';
 import { UserFormComponent } from 'src/app/shared/user-form';
 import { ProfileService } from '../../service/profile.service';
+import { User } from 'src/app/root/models';
+import { UserService } from 'src/app/root/services';
 
 @Component({
   selector: 'scs-base-profile',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotFoundComponent, HomeComponent } from './root';
+import { NotFoundComponent, HomeComponent } from './root/components';
 import { ActivateWhenLoggedInGuard, DeActivateWhenLoggedInGuard } from './root/guards';
 
 const routes: Routes = [

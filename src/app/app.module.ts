@@ -6,8 +6,13 @@ import { MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import {
-  HomeComponent, NotFoundComponent, ShrineComponent, ServerErrorHandler, ProxyInterceptor, AddBearerToken, JwtErrorHandlerService
-} from './root';
+  HomeComponent, NotFoundComponent, ShrineComponent, GlobalLoaderComponent
+} from './root/components';
+import {
+  ProxyInterceptor, AddBearerToken, JwtErrorHandlerService, ServerErrorHandler
+} from './root/interceptors';
+
+
 
 
 @NgModule({
@@ -15,6 +20,7 @@ import {
     ShrineComponent,
     HomeComponent,
     NotFoundComponent,
+    GlobalLoaderComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,3 +1,3 @@
-import { TokenResponse } from '../root';
+import { TokenResponse } from '../root/models';
 
 export interface SignupResponse extends TokenResponse { }
