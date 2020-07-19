@@ -69,6 +69,8 @@ export class BaseLoginComponent implements OnInit {
         } else {
           this.passwordFC.setErrors({ invalid: error.message });
         }
+
+        this.form.markAllAsTouched();
       }
     });
 

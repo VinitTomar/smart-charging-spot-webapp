@@ -24,7 +24,7 @@ export class JwtErrorHandlerService implements HttpInterceptor {
           return of(error);
         }
 
-        return throwError(error);
+        return throwError(errRes);
       })
     );
   }
