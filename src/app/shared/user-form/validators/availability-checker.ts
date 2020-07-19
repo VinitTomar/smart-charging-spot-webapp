@@ -4,9 +4,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, distinctUntilChanged, debounceTime, first, switchMap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AvailibiltyCheckerValidator {
 
   constructor(

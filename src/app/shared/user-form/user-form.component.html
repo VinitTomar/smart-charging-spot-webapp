@@ -1,0 +1,28 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input type="text" placeholder="Username" matInput formControlName="username">
+    <mat-hint *ngIf="usernameFC.pending">Checking username availability...</mat-hint>
+    <mat-error>{{usernameError}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Full Name</mat-label>
+    <input type="text" placeholder="Full Name" matInput formControlName="fullname">
+    <mat-error>{{fullnameError}}</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="text" placeholder="Email" matInput formControlName="email">
+    <mat-hint *ngIf="emailFC.pending">Checking email availability...</mat-hint>
+    <mat-error>{{emailError}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input type="password" placeholder="Password" matInput formControlName="password">
+    <mat-error>{{passwordError}}</mat-error>
+  </mat-form-field>
+</ng-container>

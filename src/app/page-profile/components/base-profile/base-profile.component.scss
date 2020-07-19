@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.mat-list-icon,
+p.mat-line {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.mat-subheader {
+  font-size: 20px;
+}
+
+.btn {
+  margin-top: 30px;
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-update,
+  &-cancel {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}
+
+.user-form {
+  margin-top: 20px;
+}

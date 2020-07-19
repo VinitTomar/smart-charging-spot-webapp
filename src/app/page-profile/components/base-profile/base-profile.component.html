@@ -1,2 +1,45 @@
-<p>base-profile works!</p>
-<p>{{profile | json}}</p>
+<mat-card class="info-card">
+  <ng-container *ngIf="edit">
+    <mat-card-title>Edit details</mat-card-title>
+    <mat-list>
+      <mat-divider></mat-divider>
+      <scs-user-form class="user-form"></scs-user-form>
+    </mat-list>
+    <div class="btn-wrapper">
+      <button mat-raised-button color="primary" class="btn-update" (click)="update()" [disabled]="updateInProgress">
+        Update
+      </button>
+
+      <button mat-raised-button (click)="cancel()" class="btn-cancel" [disabled]="updateInProgress">
+        cancel
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!edit">
+    <mat-card-title>Details</mat-card-title>
+    <mat-list>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon mat-list-icon>portrait</mat-icon>
+        <h4 mat-line>{{fullname}}</h4>
+        <p mat-line>Fullname</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <h4 mat-line>{{username}}</h4>
+        <p mat-line>Username</p>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>email</mat-icon>
+        <h4 mat-line>{{email}}</h4>
+        <p mat-line>email</p>
+      </mat-list-item>
+    </mat-list>
+    <button mat-raised-button class="btn btn-edit" color="primary" (click)="editDetails()"
+      [disabled]="updateInProgress">
+      Edit
+    </button>
+  </ng-container>
+</mat-card>

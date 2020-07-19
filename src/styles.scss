@@ -10,9 +10,13 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-card.form-card {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  width: 450px;
+.mat-card {
+
+  &.form-card,
+  &.info-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    width: 450px;
+  }
 }
