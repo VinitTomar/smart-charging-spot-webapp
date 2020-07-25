@@ -1,0 +1,1 @@
+export * from './base-register-pci/base-register-pci.component';

@@ -1,0 +1,42 @@
+<mat-card>
+  <form class="pci-config-form">
+    <mat-label class="label">Charger Connector Type:</mat-label>
+    <mat-radio-group>
+      <mat-radio-button value="1">CCS (fast)</mat-radio-button>
+      <mat-radio-button value="2">CHAdeMO (fast)</mat-radio-button>
+      <mat-radio-button value="1">Type-2 AC (slow/moderate)</mat-radio-button>
+      <mat-radio-button value="2">Bharat DC-001 (slow/moderate)</mat-radio-button>
+      <mat-radio-button value="1">Bharat AC-001 (slow/moderate)</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-label class="label">Power:</mat-label>
+    <mat-form-field>
+      <input type="number" matInput placeholder="in kw">
+    </mat-form-field>
+
+    <mat-label class="label">Volate Range:</mat-label>
+    <div>
+      <mat-form-field>
+        <input type="number" matInput placeholder="min">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput placeholder="max">
+      </mat-form-field>
+    </div>
+
+    <mat-label class="label">Charging points</mat-label>
+    <mat-form-field>
+      <input type="number" matInput placeholder="count">
+    </mat-form-field>
+
+    <div class="btn-wrapper">
+      <button mat-raised-button type="button" color="primary" class="btn">
+        Save
+      </button>
+
+      <button mat-raised-button type="button" class="btn">
+        Reset
+      </button>
+    </div>
+  </form>
+</mat-card>

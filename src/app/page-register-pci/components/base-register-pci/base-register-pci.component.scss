@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.label {
+  padding-top: 35px;
+
+  &:first-child {
+    padding-top: 0px;
+  }
+}
+
+.pci-config-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-radio-button {
+  margin: 10px 20px;
+}
+
+.btn {
+  &-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  width: 50%;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}
