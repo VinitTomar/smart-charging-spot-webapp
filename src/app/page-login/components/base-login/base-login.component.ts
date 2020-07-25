@@ -57,11 +57,9 @@ export class BaseLoginComponent implements OnInit {
     this.submittionInProgress = true;
 
     this._lgnSer.login(this.form.value).subscribe(res => {
-      this.submittionInProgress = false;
       this._usrSer.login(res.token);
     }, (errRes: HttpErrorResponse) => {
       this.submittionInProgress = false;
-
       if (errRes.status == 401) {
         const error = errRes.error;
         if (error.field == 'username') {
