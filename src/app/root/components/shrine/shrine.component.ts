@@ -12,7 +12,7 @@ export class ShrineComponent implements OnInit {
 
   private _allRxjsSubscription: Subscription[] = [];
 
-  get isUserLoggedInd() {
+  get isUserLoggedIn() {
     return this._userSer.loggedIn;
   }
 
