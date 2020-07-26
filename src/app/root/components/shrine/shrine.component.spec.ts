@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShrineComponent } from './shrine.component';
 import { UserService, GlobalLoaderService } from '../../services';
-import { Subject } from 'rxjs';
-import { Event, Router, RouterModule, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { GlobalLoaderComponent } from '../global-loader/global-loader.component';
 import { MatToolbarModule, MatProgressBarModule } from '@angular/material';
 import { RouterTestingModule } from "@angular/router/testing";
@@ -15,7 +14,7 @@ class UserServiceStub {
   logout() { }
 }
 
-fdescribe('ShrineComponent', () => {
+describe('ShrineComponent', () => {
   let component: ShrineComponent;
   let fixture: ComponentFixture<ShrineComponent>;
 
@@ -76,4 +75,33 @@ fdescribe('ShrineComponent', () => {
 
     expect(spyUsrLogout).toHaveBeenCalled();
   });
+
+  it('should have "login & singup" link if user is not loggedIn', () => {
+    const usrSer: UserServiceStub = TestBed.get(UserService);
+    usrSer.loggedIn = false;
+    fixture.detectChanges();
+
+    const loginBtnElm = fixture.debugElement.query(By.css('#login-btn')).nativeElement;
+    const signupBtnElm = fixture.debugElement.query(By.css('#signup-btn')).nativeElement;
+
+    const hasBothBtns = !!loginBtnElm && !!signupBtnElm;
+
+    expect(hasBothBtns).toBeTruthy();
+  });
+
+  it('should have "home & profile" link if user is loggedIn', () => {
+    const usrSer: UserServiceStub = TestBed.get(UserService);
+    usrSer.loggedIn = true;
+    fixture.detectChanges();
+
+    const homeBtnElm = fixture.debugElement.query(By.css('#home-btn')).nativeElement;
+    const profileBtnElm = fixture.debugElement.query(By.css('#profile-btn')).nativeElement;
+
+    const hasBothBtns = !!homeBtnElm && !!profileBtnElm;
+
+    expect(hasBothBtns).toBeTruthy();
+  });
+
+
+
 });
