@@ -12,7 +12,7 @@ class UserServiceStub {
 }
 
 
-fdescribe('AddBearerToken', () => {
+describe('AddBearerToken', () => {
   let httpClientMock: HttpClient;
   let httpMock: HttpTestingController;
   let userServiceStub: UserServiceStub;
@@ -33,7 +33,7 @@ fdescribe('AddBearerToken', () => {
     httpClientMock = TestBed.get(HttpClient);
     httpMock = TestBed.get(HttpTestingController);
     userServiceStub = TestBed.get(UserService);
-  })
+  });
 
   it('should be created', () => {
     const service: AddBearerToken = TestBed.get(AddBearerToken);
