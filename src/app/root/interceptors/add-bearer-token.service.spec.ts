@@ -51,9 +51,7 @@ describe('AddBearerToken', () => {
 
   it('should not add Authorization header, if user is not loggedIn', () => {
     userServiceStub.loggedIn = false;
-    httpClientMock.get('dummy-url').subscribe(res => {
-      expect(res).toBeTruthy();
-    });
+    expectAsync(httpClientMock.get('dummy-url').toPromise()).toBeResolved();
     const httpRequest = httpMock.expectOne('dummy-url');
     expect(httpRequest.request.headers.has('Authorization')).toBeFalsy();
   });
