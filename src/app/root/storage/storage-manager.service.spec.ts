@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { StorageManager } from './storage-manager.service';
 
-fdescribe('StorageManager', () => {
+describe('StorageManager', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
