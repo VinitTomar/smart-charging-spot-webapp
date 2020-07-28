@@ -9,7 +9,7 @@ class UserServiceStub {
   loggedIn = true;
 }
 
-fdescribe('DeActivateWhenLoggedInGuard', () => {
+describe('DeActivateWhenLoggedInGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
