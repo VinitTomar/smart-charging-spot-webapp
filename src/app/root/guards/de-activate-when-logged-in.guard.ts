@@ -21,6 +21,8 @@ export class DeActivateWhenLoggedInGuard implements CanActivate, CanLoad {
 
     return this._router.createUrlTree(['/']);
   }
+
+
   canLoad(
     route: Route,
     segments: UrlSegment[]): boolean {

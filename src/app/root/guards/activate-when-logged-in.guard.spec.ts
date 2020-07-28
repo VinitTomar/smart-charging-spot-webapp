@@ -32,7 +32,7 @@ describe('ActivateWhenLoggedInGuard', () => {
       const next: any = 'next';
       const state: any = 'state';
 
-      expect(guard.canActivate(next, state)).toBeTruthy();
+      expect(guard.canActivate(next, state)).toBe(true);
     }
   ));
 
