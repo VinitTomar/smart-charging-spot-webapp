@@ -8,7 +8,7 @@ class UserServiceStub {
   fetchDetails(): any { }
 }
 
-fdescribe('ResolveIfLoggedInGuard', () => {
+describe('ResolveIfLoggedInGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
