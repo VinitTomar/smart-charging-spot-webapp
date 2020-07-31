@@ -41,7 +41,7 @@ export class BaseSignupComponent implements OnInit {
       // console.log({ res })
       this._usrSer.login(res.token);
     }, err => {
-      this.registrationInProgress = false;
+      // this.registrationInProgres/s = false;
       console.log({ err })
     });
   }

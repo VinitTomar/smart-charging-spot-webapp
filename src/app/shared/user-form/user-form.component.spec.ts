@@ -7,7 +7,7 @@ import { MatInputModule, MatFormFieldModule } from '@angular/material';
 import { AvailibiltyCheckerValidator } from './validators/availability-checker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('UserFormComponent', () => {
+describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
 
