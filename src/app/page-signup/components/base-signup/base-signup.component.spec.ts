@@ -22,7 +22,7 @@ class HttpClientStub {
   post() { }
 }
 
-fdescribe('BaseSignupComponent', () => {
+describe('BaseSignupComponent', () => {
   let component: BaseSignupComponent;
   let fixture: ComponentFixture<BaseSignupComponent>;
   let userService: UserServiceStub;

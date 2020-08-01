@@ -31,6 +31,6 @@ describe('SignupService', () => {
 
     mockReq.flush({ token: 'dummy token' });
 
-  })
+  });
 
 });
