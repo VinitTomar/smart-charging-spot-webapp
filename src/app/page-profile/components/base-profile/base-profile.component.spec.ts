@@ -28,7 +28,7 @@ class HttpClientStub {
   post() { }
 }
 
-fdescribe('BaseProfileComponent', () => {
+describe('BaseProfileComponent', () => {
   let component: BaseProfileComponent;
   let fixture: ComponentFixture<BaseProfileComponent>;
   let userService: UserServiceStub;
