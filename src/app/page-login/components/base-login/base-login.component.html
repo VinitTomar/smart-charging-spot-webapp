@@ -3,16 +3,16 @@
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
     <input type="text" placeholder="Username" matInput formControlName="username">
-    <mat-error>{{usernameErr}}</mat-error>
+    <mat-error id="username-error">{{usernameErr}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
     <input type="password" placeholder="Password" matInput formControlName="password">
-    <mat-error>{{passwordErr}}</mat-error>
+    <mat-error id="password-error">{{passwordErr}}</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" [disabled]="submittionInProgress" (click)="submit()">
+  <button id="loginBtn" mat-raised-button color="primary" [disabled]="submittionInProgress" (click)="submit()">
     Login
   </button>
 </mat-card>

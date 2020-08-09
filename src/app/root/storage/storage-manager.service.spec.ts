@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StorageManagerService } from './storage-manager.service';
+import { StorageManager } from './storage-manager.service';
 
-describe('StorageManagerService', () => {
+describe('StorageManager', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: StorageManagerService = TestBed.get(StorageManagerService);
+    const service: StorageManager = TestBed.get(StorageManager);
     expect(service).toBeTruthy();
+  });
+
+  it('should return localstoreage', () => {
+    const service: StorageManager = TestBed.get(StorageManager);
+    expect(service.storage).toBeTruthy();
   });
 });

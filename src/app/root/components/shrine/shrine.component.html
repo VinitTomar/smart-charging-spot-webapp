@@ -4,18 +4,21 @@
   <mat-toolbar-row>
     <a href="/" [routerLink]="['/']" class="menu-item">SCS</a>
     <span class="menu-items">
-      <ng-container *ngIf="!isUserLoggedInd">
-        <a href="/login" [routerLink]="['/login']" class="menu-item" routerLinkActive="menu-item--active">Login</a>
+      <ng-container *ngIf="!isUserLoggedIn">
+        <a href="/login" id="login-btn" [routerLink]="['/login']" class="menu-item"
+          routerLinkActive="menu-item--active">Login</a>
 
-        <a href="/signup" [routerLink]="['/signup']" class="menu-item" routerLinkActive="menu-item--active">Sign up</a>
+        <a href="/signup" id="signup-btn" [routerLink]="['/signup']" class="menu-item"
+          routerLinkActive="menu-item--active">Sign up</a>
       </ng-container>
 
-      <ng-container *ngIf="isUserLoggedInd">
-        <a href="/login" [routerLink]="['/']" class="menu-item" routerLinkActive="menu-item--active"
+      <ng-container *ngIf="isUserLoggedIn">
+        <a href="/" id="home-btn" [routerLink]="['/']" class="menu-item" routerLinkActive="menu-item--active"
           [routerLinkActiveOptions]="{exact:true}">Home</a>
 
-        <a href="/signup" [routerLink]="['/profile']" class="menu-item" routerLinkActive="menu-item--active">Profile</a>
-        <a href="javascript:void(0);" class="menu-item" (click)="logout()">Logout</a>
+        <a href="/profile" id="profile-btn" [routerLink]="['/profile']" class="menu-item"
+          routerLinkActive="menu-item--active">Profile</a>
+        <a href="javascript:void(0);" id="logout-btn" class="menu-item" (click)="logout()">Logout</a>
       </ng-container>
 
     </span>

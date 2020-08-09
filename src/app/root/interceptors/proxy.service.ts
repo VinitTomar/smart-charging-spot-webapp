@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { GlobalLoaderService } from '../services';
 import { finalize } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class ProxyInterceptor implements HttpInterceptor {
 
   constructor(

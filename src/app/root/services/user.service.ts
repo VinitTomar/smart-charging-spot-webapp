@@ -13,11 +13,11 @@ import { User } from '../models';
 export class UserService {
   private readonly tokenKey = 'token';
 
+  details: User = null;
+
   private get _storage() {
     return this._storageManager.storage;
   }
-
-  details: User = null;
 
   get loggedIn() {
     return !!this._storage.getItem(this.tokenKey);
