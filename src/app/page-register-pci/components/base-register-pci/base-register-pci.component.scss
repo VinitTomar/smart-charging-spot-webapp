@@ -17,6 +17,13 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+
+  ::ng-deep {
+    .mat-card-header-text {
+      margin-left: 0;
+    }
+  }
+
 }
 
 .mat-radio-group {
@@ -29,14 +36,61 @@
 }
 
 .btn {
+  width: 50%;
+
   &-wrapper {
+    margin-top: 40px;
     display: flex;
     width: 100%;
   }
 
-  width: 50%;
-
   &:first-child {
     margin-right: 10px;
   }
+
+  &-fetch-gps {
+    @extend %btn-margin;
+    width: 125px;
+  }
+
+  &-add-connector {
+    @extend %btn-margin;
+    width: 100px;
+    margin-right: 0px;
+  }
+
+  &-quanity-wrapper {
+    display: flex;
+    align-items: center;
+    width: 65%;
+  }
+}
+
+.gps-coord-wrapper,
+.address-form-wrapper {
+  display: flex;
+
+  .mat-form-field {
+    margin-left: 10px;
+  }
+}
+
+%btn-margin {
+  margin: auto 0px 35px 30px;
+}
+
+.address-form-wrapper {
+  flex-direction: column;
+}
+
+.connector-selection-wrapper {
+  display: flex;
+
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
 }
