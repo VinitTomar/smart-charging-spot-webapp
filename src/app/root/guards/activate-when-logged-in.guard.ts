@@ -24,6 +24,11 @@ export class ActivateWhenLoggedInGuard implements CanActivate, CanLoad {
   }
 
   canLoad(route: Route, segments: UrlSegment[]): boolean {
-    return this._userService.loggedIn;
+    if (this._userService.loggedIn) {
+      return true;
+    }
+
+
+    this._router.navigateByUrl('notfound');
   }
 }

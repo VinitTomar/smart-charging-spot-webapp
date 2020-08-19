@@ -38,6 +38,10 @@
 .btn {
   width: 50%;
 
+  &-list {
+    margin-left: auto;
+  }
+
   &-wrapper {
     margin-top: 40px;
     display: flex;
@@ -53,7 +57,7 @@
     width: 125px;
   }
 
-  &-add-connector {
+  &-add {
     @extend %btn-margin;
     width: 100px;
     margin-right: 0px;
@@ -76,7 +80,7 @@
 }
 
 %btn-margin {
-  margin: auto 0px 35px 30px;
+  margin: auto 0px 30px 30px;
 }
 
 .address-form-wrapper {
@@ -93,4 +97,9 @@
 
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
 }

@@ -15,7 +15,8 @@
       <ng-container *ngIf="isUserLoggedIn">
         <a href="/" id="home-btn" [routerLink]="['/']" class="menu-item" routerLinkActive="menu-item--active"
           [routerLinkActiveOptions]="{exact:true}">Home</a>
-
+        <a href="pci" id="profile-btn" [routerLink]="['pci']" class="menu-item"
+          routerLinkActive="menu-item--active">Pci</a>
         <a href="/profile" id="profile-btn" [routerLink]="['/profile']" class="menu-item"
           routerLinkActive="menu-item--active">Profile</a>
         <a href="javascript:void(0);" id="logout-btn" class="menu-item" (click)="logout()">Logout</a>

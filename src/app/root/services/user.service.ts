@@ -47,7 +47,7 @@ export class UserService {
 
   login(token: string) {
     this.token = token;
-    this._router.navigateByUrl('profile');
+    this._router.navigateByUrl('/');
   }
 
   logout() {

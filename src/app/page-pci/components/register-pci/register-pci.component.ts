@@ -3,11 +3,11 @@ import { PciCharger } from '../../model/pci-charger';
 import { AddedCharger } from '../../model/added-charger';
 
 @Component({
-  selector: 'scs-base-register-pci',
-  templateUrl: './base-register-pci.component.html',
-  styleUrls: ['./base-register-pci.component.scss']
+  selector: 'scs-register-pci',
+  templateUrl: './register-pci.component.html',
+  styleUrls: ['./register-pci.component.scss']
 })
-export class BaseRegisterPciComponent implements OnInit {
+export class RegisterPciComponent implements OnInit {
 
   selectedCharger: PciCharger;
 
@@ -21,10 +21,25 @@ export class BaseRegisterPciComponent implements OnInit {
 
   addedChargers: AddedCharger[] = [];
 
+  step = 1;
+
+
   constructor() { }
 
   ngOnInit() {
     this.selectedCharger = this.avlChargers[0];
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
   formatChargerName(chr: PciCharger): string {

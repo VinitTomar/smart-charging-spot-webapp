@@ -1,0 +1,160 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Register Public charging infrastructure</mat-card-title>
+    <a mat-button color="primary" href="/pci" [routerLink]="['/pci']" class="btn-list">List</a>
+  </mat-card-header>
+
+  <form class="pci-config-form">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Basic info
+          </mat-panel-title>
+          <mat-panel-description>
+            Name, Highway location & Gps coordinate.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="content-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="text" name="pci-name" id="pci-name" placeholder="pci name" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Highway</mat-label>
+            <input type="text" name="pci-highway-name" id="pci-highway-name" placeholder="name of highway where pci is"
+              matInput>
+          </mat-form-field>
+          <mat-label>GPS coordinates:</mat-label>
+          <div class="gps-coord-wrapper">
+            <mat-form-field appearance="outline">
+              <mat-label>Lattitude</mat-label>
+              <input type="text" name="pci-gps-lattitude" id="pci-gps-lattitude" placeholder="pci gps lattitude"
+                matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Logitude</mat-label>
+              <input type="text" name="pci-gps-logitude" id="pci-gps-logitude" placeholder="pci gps logitude" matInput>
+            </mat-form-field>
+
+            <button mat-raised-button type="button" color="primary" class="btn-fetch-gps">
+              <mat-icon>gps_fixed</mat-icon>
+              <mat-label>Fetch</mat-label>
+            </button>
+          </div>
+
+
+        </div>
+
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [disabled]="true" [expanded]="step === 2" (opened)="setStep(2)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Enter Address
+          </mat-panel-title>
+          <mat-panel-description>
+            Complete address, with city, pincode and state.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="address-form-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Line 1</mat-label>
+            <input type="text" name="address-line-one" id="address-line-one" placeholder="appartment number" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Line 2</mat-label>
+            <input type="text" name="address-line-two" id="address-line-two" placeholder="street number" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Landmark</mat-label>
+            <input type="text" name="address-landmark" id="address-landmark" placeholder="landmark" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>District</mat-label>
+            <input type="text" name="address-district" id="address-district" placeholder="district" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input type="text" name="address-state" id="address-state" placeholder="state" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Pincode</mat-label>
+            <input type="number" name="address-pincode" id="address-pincode" placeholder="pincode" matInput>
+          </mat-form-field>
+        </div>
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [disabled]="true" [expanded]="step === 3" (opened)="setStep(3)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add chargers
+          </mat-panel-title>
+          <mat-panel-description>
+            Choose your charges and no. of points.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="connector-selection-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose selector type</mat-label>
+            <mat-select [(ngModel)]="selectedCharger" name="select-charger-type">
+              <mat-option *ngFor="let chrg of avlChargers" [value]="chrg">
+                {{formatChargerName(chrg)}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button type="button" color="primary" class="btn-add" (click)="addCharger()">
+            <mat-icon>add</mat-icon>
+            <mat-label>Add</mat-label>
+          </button>
+        </div>
+
+        <mat-card-subtitle *ngIf="addedChargers && addedChargers.length > 0">Added Charger List:</mat-card-subtitle>
+
+        <mat-list>
+          <mat-list-item *ngFor="let chrg of addedChargers; let i = index;">
+            <mat-icon mat-list-icon>ev_station</mat-icon>
+            <h3 mat-line>{{formatChargerName(chrg.charger)}}</h3>
+
+            <div class="btn-quanity-wrapper">
+              <button mat-icon-button color="primary" (click)="incChargerQuantity(i)">
+                <mat-icon>add_circle_outline</mat-icon>
+              </button>
+
+              <span>Quantity: {{chrg.quantity}}</span>
+
+              <button mat-icon-button color="warn" (click)="decChargerQuantity(i)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-raised-button type="button">Reset</button>
+          <button mat-raised-button color="primary">Save</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</mat-card>

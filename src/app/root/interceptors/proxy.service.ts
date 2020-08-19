@@ -16,7 +16,7 @@ export class ProxyInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this._loader.showLoader();
-    const newUrl = 'http://localhost:3000/' + req.url;
+    const newUrl = '/api/' + req.url;
     const newReq: HttpRequest<any> = req.clone({
       setHeaders: {
         'Content-Type': 'application/json'

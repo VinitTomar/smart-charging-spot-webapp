@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.btn {
+  &-add {
+    margin-left: auto;
+  }
+}
+
+.mat-card {
+  &-header {
+    margin-bottom: 20px;
+  }
+
+  &-content {
+    margin-top: 40px;
+  }
+}
+
+.text-no-pci-add {
+  display: flex;
+  width: 100%;
+  padding: 70px;
+  justify-content: center;
+}

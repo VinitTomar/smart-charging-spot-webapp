@@ -16,6 +16,8 @@ export class ShrineComponent implements OnInit {
     return this._userSer.loggedIn;
   }
 
+  private _showLoaderRequest = false;
+
   constructor(
     private _userSer: UserService,
     private _router: Router,
@@ -25,10 +27,12 @@ export class ShrineComponent implements OnInit {
   ngOnInit() {
     this._allRxjsSubscription.push(
       this._router.events.subscribe(event => {
-        if (event instanceof NavigationStart) {
+        if (event instanceof NavigationStart && !this._showLoaderRequest) {
+          this._showLoaderRequest = true;
           this._loader.showLoader();
         } else if (event instanceof NavigationEnd) {
           this._loader.hideLoader();
+          this._showLoaderRequest = false;
         }
       })
     );

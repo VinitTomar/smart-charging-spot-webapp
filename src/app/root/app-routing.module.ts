@@ -25,8 +25,10 @@ const routes: Routes = [
     canLoad: [ActivateWhenLoggedInGuard]
   },
   {
-    path: 'register-pci',
-    loadChildren: () => import('../page-register-pci/register-pci.module').then(m => m.RegisterPciModule)
+    path: 'pci',
+    loadChildren: () => import('../page-pci/pci.module').then(m => m.PciModule),
+    canActivate: [ActivateWhenLoggedInGuard],
+    canLoad: [ActivateWhenLoggedInGuard]
   },
   {
     path: "**",
