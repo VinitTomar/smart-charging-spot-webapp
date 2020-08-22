@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
-}
 
 body {
   margin: 0;
@@ -22,5 +18,14 @@ body {
     flex-direction: column;
     min-width: 300px;
     width: 450px;
+  }
+}
+
+.mat-button-base.card-header-btn {
+  margin-bottom: 20px;
+  margin-left: 10px;
+
+  &:nth-child(2) {
+    margin-left: auto;
   }
 }

@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatRadioModule, MatIconModule, MatDividerModule, MatSelectModule, MatListModule, MatExpansionModule } from '@angular/material';
 
 import { PciRoutingModule } from './pci-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AfterLoggedInModule } from '../util/after-logged-in';
 import { BasePciComponent } from './components/base-pci/base-pci.component';
-import { RegisterPciComponent } from './components/register-pci/register-pci.component';
+import { AddEditPciComponent } from './components/add-edit-pci/add-edit-pci.component';
+import { PciDetailComponent } from './components/pci-detail/pci-detail.component';
+import { PciChargerToTextPipe } from './pipes/pci-charger-to-text.pipe';
 
 
 @NgModule({
   declarations: [
     BasePciComponent,
-    RegisterPciComponent
+    AddEditPciComponent,
+    PciDetailComponent,
+    PciChargerToTextPipe
   ],
   imports: [
     CommonModule,

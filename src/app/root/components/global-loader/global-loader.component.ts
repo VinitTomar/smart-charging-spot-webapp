@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { GlobalLoaderService } from '../../services';
 import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'scs-global-loader',
@@ -18,12 +19,19 @@ export class GlobalLoaderComponent implements OnInit, OnDestroy {
   private _allRxjsSubscription: Subscription[] = [];
 
   constructor(
-    private _loader: GlobalLoaderService
+    private _loader: GlobalLoaderService,
+    private _cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this._allRxjsSubscription.push(
-      this._loader.loaderVisibility$.subscribe(state => this.show = state)
+      this._loader.loaderVisibility$
+        .pipe(
+          tap(() => {
+            if (this._cdRef)
+              this._cdRef.markForCheck();
+          })
+        ).subscribe(state => this.show = state)
     );
   }
 

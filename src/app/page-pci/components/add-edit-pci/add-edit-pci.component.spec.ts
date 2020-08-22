@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BaseRegisterPciComponent } from './register-pci.component';
+import { AddEditPciComponent } from './add-edit-pci.component';
 
-describe('BaseRegisterPciComponent', () => {
-  let component: BaseRegisterPciComponent;
-  let fixture: ComponentFixture<BaseRegisterPciComponent>;
+describe('AddEditPciComponent', () => {
+  let component: AddEditPciComponent;
+  let fixture: ComponentFixture<AddEditPciComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BaseRegisterPciComponent]
+      declarations: [AddEditPciComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaseRegisterPciComponent);
+    fixture = TestBed.createComponent(AddEditPciComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,9 +6,21 @@
 
   <mat-divider></mat-divider>
 
-  <mat-card-content>
-    <span class="text-no-pci-add">
+  <mat-card-content *ngIf="(pciList$ | async) as pciList">
+    <span class="text-no-pci-add" *ngIf="pciList.length == 0; else pciListTemplate">
       No PCI added yet.
     </span>
+    <ng-template #pciListTemplate>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let pciItem of pciList" (click)="viewPciDetail(pciItem)">
+          <mat-icon mat-list-icon>ev_station</mat-icon>
+          <h4 mat-line>{{pciItem.name}}</h4>
+          <p mat-line> {{pciItem.highWay || 'Not located on any highway'}} </p>
+          <button mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+    </ng-template>
   </mat-card-content>
 </mat-card>

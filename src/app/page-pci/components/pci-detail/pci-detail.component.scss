@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.card-title-icon {
+  vertical-align: middle;
+}
+
+.list-icon-with-nested-item {
+  margin-bottom: auto;
+}
+
+.mat-line.list-inner {
+  display: flex;
+
+  .mat-list-item {
+    width: unset;
+  }
+}

@@ -1,0 +1,96 @@
+<mat-card *ngIf="pciDetail$ | async as pci">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="card-title-icon">article</mat-icon>
+      Pci details
+    </mat-card-title>
+    <a mat-button color="primary" class="card-header-btn" href="/pci/{{pci._id}}/edit" [routerLink]="['/pci']">
+      <mat-icon>list</mat-icon>
+      List
+    </a>
+    <a mat-raised-button color="accent" class="card-header-btn" href="/pci/{{pci._id}}/edit" [routerLink]="['edit']">
+      <mat-icon>create</mat-icon>
+      Edit
+    </a>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-list>
+    <mat-list-item>
+      <mat-icon mat-list-icon>class</mat-icon>
+      <h4 mat-line>{{pci.name}}</h4>
+      <p mat-line>Name </p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>near_me</mat-icon>
+      <h4 mat-line>{{pci.highWay || 'Not located on any highway'}}</h4>
+      <p mat-line>Highway</p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon class="list-icon-with-nested-item">location_on</mat-icon>
+      <h4 mat-line>Gps coordinates</h4>
+      <mat-list mat-line class="list-inner">
+        <mat-list-item>
+          <h4 mat-line>{{pci.gpsCoord.latitude}}</h4>
+          <p mat-line>Latitude</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.gpsCoord.latitude}}</h4>
+          <p mat-line>Latitude</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon class="list-icon-with-nested-item">home</mat-icon>
+      <h4 mat-line>Address</h4>
+      <mat-list mat-line class="list-inner">
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.line1}}</h4>
+          <p mat-line>Line1</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.line2}}</h4>
+          <p mat-line>Line2</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.landmark}}</h4>
+          <p mat-line>Landmark</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.district}}</h4>
+          <p mat-line>District</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.state}}</h4>
+          <p mat-line>State</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{pci.address.pincode}}</h4>
+          <p mat-line>Pincode</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon class="list-icon-with-nested-item">charging_station</mat-icon>
+      <h4 mat-line>Chargers</h4>
+      <mat-list mat-line>
+        <mat-list-item *ngFor="let charger of pci.chargers">
+          <mat-icon mat-list-icon>fiber_manual_record</mat-icon>
+          <h4 mat-line>{{charger | pciChargerToText}}</h4>
+          <p mat-line>Points: {{charger.points}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-list-item>
+
+  </mat-list>
+
+</mat-card>

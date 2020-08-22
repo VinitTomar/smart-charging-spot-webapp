@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserService, GlobalLoaderService } from '../../services';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'scs-shrine',
   templateUrl: './shrine.component.html',
-  styleUrls: ['./shrine.component.scss']
+  styleUrls: ['./shrine.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShrineComponent implements OnInit {
 
@@ -21,7 +22,7 @@ export class ShrineComponent implements OnInit {
   constructor(
     private _userSer: UserService,
     private _router: Router,
-    private _loader: GlobalLoaderService
+    private _loader: GlobalLoaderService,
   ) { }
 
   ngOnInit() {
