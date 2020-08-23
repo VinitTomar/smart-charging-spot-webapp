@@ -1,14 +1,21 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Register Public charging infrastructure</mat-card-title>
-    <a mat-button color="primary" href="/pci" [routerLink]="['/pci']" class="btn-list">List</a>
+    <mat-card-title>
+      <mat-icon class="card-title-icon">{{pciId ? 'edit_road' : 'receipt'}}</mat-icon>
+      {{pciId ? 'Edit' : 'Register'}}
+    </mat-card-title>
+    <a mat-button color="primary" href="/pci" [routerLink]="['/pci']" class="btn-list">
+      <mat-icon>list</mat-icon>
+      List
+    </a>
   </mat-card-header>
   <form class="pci-config-form">
     <mat-accordion>
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Basic info
+            <mat-icon>account_circle</mat-icon>
+            <span>Basic info</span>
           </mat-panel-title>
           <mat-panel-description>
             Name, Highway location & Gps coordinate.
@@ -61,6 +68,7 @@
       <mat-expansion-panel [disabled]="!basicInfoForm.valid" [expanded]="step === 2" (opened)="setStep(2)">
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <mat-icon>home</mat-icon>
             Enter Address
           </mat-panel-title>
           <mat-panel-description>
@@ -122,6 +130,7 @@
         (opened)="setStep(3)">
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <mat-icon>battery_charging_full</mat-icon>
             Add chargers
           </mat-panel-title>
           <mat-panel-description>
@@ -146,7 +155,7 @@
         </div>
 
         <ng-container *ngIf="addedChargers && addedChargers.length > 0; else noChargerAddedTemplate;">
-          <mat-card-subtitle>
+          <mat-card-subtitle class="added-charger-text">
             Added Charger List:
           </mat-card-subtitle>
 

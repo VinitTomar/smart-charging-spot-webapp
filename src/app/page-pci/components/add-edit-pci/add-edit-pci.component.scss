@@ -3,6 +3,17 @@
   flex-direction: column;
   width: 100%;
   padding: 20px;
+
+  .added-charger-text {
+    margin-bottom: 0px;
+    margin-top: 20px;
+  }
+
+  ::ng-deep {
+    .mat-expansion-panel-body {
+      padding: 0px 60px 16px;
+    }
+  }
 }
 
 .label {
@@ -73,9 +84,11 @@
 .gps-coord-wrapper,
 .address-form-wrapper {
   display: flex;
+}
 
+.gps-coord-wrapper {
   .mat-form-field {
-    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 
@@ -102,4 +115,12 @@
 .content-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.mat-expansion-panel-header-title {
+  font-size: 20px;
+
+  .mat-icon {
+    margin-right: 10px;
+  }
 }

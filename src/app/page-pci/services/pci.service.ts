@@ -5,6 +5,7 @@ import { BehaviorSubject, of, Observable } from 'rxjs';
 
 import { PciModel } from '../model/pci.model';
 import { switchMap, tap, filter, reduce, map } from 'rxjs/operators';
+import { PciDeleteResponse } from '../model/pci-delete-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,16 @@ export class PciService {
         this.pciList = [updatedPci, ...otherPcis];
       })
     );
+  }
+
+  deletePci(pciId: string) {
+    return this._httpClient.delete<PciDeleteResponse>('pci/' + pciId)
+      .pipe(
+        tap((res) => {
+          if (res.deleted)
+            this.pciList = this.pciList.filter(pci => pci._id !== pciId);
+        })
+      );
   }
 
 }

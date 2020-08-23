@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Please confirm</h1>
+<div mat-dialog-content>
+  <p>{{msg}}</p>
+</div>
+<div mat-dialog-actions class="action-row">
+  <button mat-raised-button [mat-dialog-close] [disabled]="actionInProgress">No</button>
+  <button mat-raised-button color="warn" (click)="performAction()" [disabled]="actionInProgress">Yes</button>
+</div>

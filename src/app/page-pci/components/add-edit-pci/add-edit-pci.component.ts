@@ -28,14 +28,6 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
 
   private readonly _allRxjsSubscriptions: Subscription[] = [];
 
-  get avlChargers(): Observable<PciChargerOptionModel[]> {
-    return this._pciChargerOptionService.options()
-      .pipe(tap(options => {
-        if (!this.selectedCharger)
-          this.selectedCharger = options[0];
-      }));
-  }
-
   get nameFC() {
     return this.basicInfoForm.get('name');
   }
@@ -127,6 +119,14 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
 
   private get pciId() {
     return this._activeRoute.snapshot.paramMap.get("id");
+  }
+
+  get avlChargers(): Observable<PciChargerOptionModel[]> {
+    return this._pciChargerOptionService.options()
+      .pipe(tap(options => {
+        if (!this.selectedCharger)
+          this.selectedCharger = options[0];
+      }));
   }
 
   private get _pciDetail$() {
