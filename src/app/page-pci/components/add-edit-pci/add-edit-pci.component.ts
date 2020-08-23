@@ -117,7 +117,7 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
     return ((!this.addedChargers && this.addedChargers.length < 1) || this.pciAjaxInprogress);
   }
 
-  private get pciId() {
+  get pciId() {
     return this._activeRoute.snapshot.paramMap.get("id");
   }
 
