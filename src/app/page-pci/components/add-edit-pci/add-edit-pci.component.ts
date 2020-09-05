@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { PciModel } from '../../model/pci.model';
 import { PciService } from '../../services/pci.service';
+import { deepClone } from 'src/app/util/deep-clone';
 
 
 @Component({
@@ -166,19 +167,25 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
       'pincode': ['', [Validators.required, Validators.pattern(/^[\d]{6}$/)]]
     });
 
-    const subsc = this._pciDetail$.subscribe(pci => {
-      if (pci) {
-        const { name, highWay, gpsCoord } = pci;
-        this.basicInfoForm.setValue({ name, highWay, gpsCoord });
-        this.addressForm.setValue(pci.address);
-        this.addedChargers = pci.chargers;
-      }
-    });
-    this._allRxjsSubscriptions.push(subsc);
+    this._setFormData();
+
   }
 
   ngOnDestroy() {
     this._allRxjsSubscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  private _setFormData() {
+    const subsc = this._pciDetail$.subscribe(pci => {
+      if (pci) {
+        const clonedPci = deepClone(pci) as PciModel;
+        const { name, highWay, gpsCoord } = clonedPci;
+        this.basicInfoForm.setValue({ name, highWay, gpsCoord });
+        this.addressForm.setValue(clonedPci.address);
+        this.addedChargers = clonedPci.chargers;
+      }
+    });
+    this._allRxjsSubscriptions.push(subsc);
   }
 
   private _isStepValid(nextStepIndex: number): boolean {
@@ -250,9 +257,14 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
   }
 
   resetPciForms() {
-    this.basicInfoForm.reset();
-    this.addressForm.reset();
-    this.addedChargers.length = 0;
+    if (this.pciId) {
+      this._setFormData();
+    } else {
+      this.basicInfoForm.reset();
+      this.addressForm.reset();
+      this.addedChargers.length = 0;
+    }
+
     this.step = 1;
   }
 
@@ -271,7 +283,14 @@ export class AddEditPciComponent implements OnInit, OnDestroy {
   }
 
   addCharger() {
-    this.addedChargers.push({ ...this.selectedCharger, points: 1 });
+    const chargerIndex = this.addedChargers.findIndex((chrg) => chrg.type === this.selectedCharger.type && chrg.connector === this.selectedCharger.connector);
+
+    if (chargerIndex > -1) {
+      this.incChargerPoints(chargerIndex)
+    } else {
+      this.addedChargers.push({ ...this.selectedCharger, points: 1 });
+    }
+
   }
 
   incChargerPoints(index: number) {
