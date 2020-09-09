@@ -31,6 +31,12 @@ const routes: Routes = [
     canLoad: [ActivateWhenLoggedInGuard]
   },
   {
+    path: 'booking',
+    loadChildren: () => import('../page-booking/booking.module').then(m => m.BookingModule),
+    canActivate: [ActivateWhenLoggedInGuard],
+    canLoad: [ActivateWhenLoggedInGuard]
+  },
+  {
     path: "**",
     component: NotFoundComponent
   }
