@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'scs-new-booking',
@@ -8,9 +10,23 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NewBookingComponent implements OnInit {
 
-  constructor() { }
+  searchInProgress = false;
+
+  get pcisList$() {
+    return this._bookingService.searchedPcis$.pipe(tap(() => this.searchInProgress = false));
+  }
+
+  constructor(
+    private _bookingService: BookingService,
+    private _cdRef: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
+  }
+
+  search(keyword: string) {
+    this.searchInProgress = true;
+    this._bookingService.searchPci(keyword);
   }
 
 }

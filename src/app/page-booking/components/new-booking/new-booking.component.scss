@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+
+  &::ng-deep {
+    .mat-expansion-panel-body {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.no-search {
+  display: flex;
+  width: 100%;
+  padding: 70px;
+  justify-content: center;
+}
+
+.mat-card {
+  &-header {
+    margin-bottom: 20px;
+  }
+
+  &-content {
+    margin-top: 40px;
+  }
+}
+
+.btn {
+  &-booking {
+    margin-left: auto;
+  }
+}
+
+.row-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  &-input {
+    width: 270px;
+  }
+
+  &-btn {
+    margin-left: 20px;
+    margin-bottom: 19px;
+  }
+}

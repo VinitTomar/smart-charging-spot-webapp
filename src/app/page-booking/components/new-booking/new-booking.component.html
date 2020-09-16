@@ -1,1 +1,57 @@
-<p>new-booking works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="card-title-icon">book</mat-icon>
+      My Bookings
+    </mat-card-title>
+    <a mat-button color="primary" class="btn-booking" href="/booking" [routerLink]="['/booking']">
+      <mat-icon>list</mat-icon>
+      My Bookings
+    </a>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+
+    <div class="row-search">
+      <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Keyword</mat-label>
+        <input #keyword matInput placeholder="Search by PCI name or highway" name="pci search keyword">
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" class="search-btn" [disabled]="searchInProgress"
+        (click)="search(keyword.value)">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+    </div>
+
+    <ng-container *ngIf="(pcisList$ | async) as pciList;">
+
+      <span class="no-search" *ngIf="pciList.length === 0">
+        No PCI found. Try with other keyword.
+      </span>
+
+      <mat-accordion *ngIf="pciList.length > 0">
+        <mat-expansion-panel *ngFor="let pci of pciList">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>ev_station</mat-icon>
+              {{pci.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>directions</mat-icon>
+              {{pci.highWay}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <button mat-flat-button color="primary" class="btn-booking">
+            <mat-icon>book_online</mat-icon>
+            Book
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

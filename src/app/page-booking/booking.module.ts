@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
-import { MatCardModule, MatListModule, MatDividerModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatDividerModule, MatIconModule, MatButtonModule, MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NewBookingComponent } from './components/new-booking/new-booking.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,11 +13,15 @@ import { NewBookingComponent } from './components/new-booking/new-booking.compon
   imports: [
     CommonModule,
     BookingRoutingModule,
+    FormsModule,
     MatCardModule,
     MatListModule,
     MatDividerModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class BookingModule { }
