@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PciChargerOptionModel } from '../model/pci-charger-option.model';
+import { PciChargerOptionModel } from 'src/app/page-pci/model/pci-charger-option.model';
 
 @Pipe({
   name: 'pciChargerToText'
