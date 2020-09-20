@@ -4,7 +4,7 @@
       <mat-icon class="card-title-icon">book</mat-icon>
       My Bookings
     </mat-card-title>
-    <a mat-button color="primary" class="btn-booking" href="/booking" [routerLink]="['/booking']">
+    <a mat-button color="primary" class="btn-booking btn-booking--list" href="/booking" [routerLink]="['/booking']">
       <mat-icon>list</mat-icon>
       My Bookings
     </a>
@@ -27,29 +27,123 @@
       </button>
     </div>
 
-    <ng-container *ngIf="(pcisList$ | async) as pciList;">
+    <ng-container *ngIf="(bookingChargers$ | async) as chargerList;">
 
-      <span class="no-search" *ngIf="pciList.length === 0">
+      <span class="no-search" *ngIf="chargerList.length === 0">
         No PCI found. Try with other keyword.
       </span>
 
-      <mat-accordion *ngIf="pciList.length > 0">
-        <mat-expansion-panel *ngFor="let pci of pciList">
+      <mat-accordion *ngIf="chargerList.length > 0">
+        <mat-expansion-panel *ngFor="let chrg of chargerList">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>ev_station</mat-icon>
-              {{pci.name}}
+              <mat-icon>charging_station</mat-icon>
+              {{chrg | pciChargerToText}}
             </mat-panel-title>
             <mat-panel-description>
-              <mat-icon>directions</mat-icon>
-              {{pci.highWay}}
+              <mat-icon>ev_station</mat-icon>
+              {{chrg.pciName}}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <button mat-flat-button color="primary" class="btn-booking">
-            <mat-icon>book_online</mat-icon>
-            Book
-          </button>
+          <mat-divider inset="true"></mat-divider>
+
+          <mat-list>
+            <mat-list-item>
+              <mat-icon mat-list-icon class="list-icon-with-nested-item">home</mat-icon>
+              <h4 mat-line>Address</h4>
+              <mat-list mat-line class="list-inner">
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.line1}}</h4>
+                  <p mat-line>Line1</p>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.line2}}</h4>
+                  <p mat-line>Line2</p>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.landmark}}</h4>
+                  <p mat-line>Landmark</p>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.district}}</h4>
+                  <p mat-line>District</p>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.state}}</h4>
+                  <p mat-line>State</p>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>{{chrg.pciAddress.pincode}}</h4>
+                  <p mat-line>Pincode</p>
+                </mat-list-item>
+              </mat-list>
+            </mat-list-item>
+          </mat-list>
+
+          <mat-divider inset="true"></mat-divider>
+
+
+          <mat-tab-group>
+            <mat-tab *ngFor="let point of chrg.bookingPoints" [label]="point.label">
+              <mat-form-field appearance="outline">
+                <mat-label>Booking Date</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" (click)="picker.open()"
+                  (focus)="picker.open()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-label>Duration</mat-label>
+              <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="1">1 Hour</mat-button-toggle>
+                <mat-button-toggle value="2">2 Hours</mat-button-toggle>
+                <mat-button-toggle value="3">3 Hours</mat-button-toggle>
+                <mat-button-toggle value="4">4 Hours</mat-button-toggle>
+                <mat-button-toggle value="5">5 Hours</mat-button-toggle>
+                <mat-button-toggle value="6">6 Hours</mat-button-toggle>
+                <mat-button-toggle value="7">7 Hours</mat-button-toggle>
+                <mat-button-toggle value="8">8 Hours</mat-button-toggle>
+              </mat-button-toggle-group>
+
+              <mat-label class="available-slots-label">Available Slots</mat-label>
+              <mat-chip-list>
+                <mat-chip>8:00 AM</mat-chip>
+                <mat-chip>9:00 AM</mat-chip>
+                <mat-chip>10:00 AM</mat-chip>
+                <mat-chip>11:00 AM</mat-chip>
+                <mat-chip>12:00 PM</mat-chip>
+                <mat-chip>1:00 PM</mat-chip>
+
+                <mat-chip>8:00 AM</mat-chip>
+                <mat-chip>9:00 AM</mat-chip>
+                <mat-chip>10:00 AM</mat-chip>
+                <mat-chip>11:00 AM</mat-chip>
+                <mat-chip>12:00 PM</mat-chip>
+                <mat-chip>1:00 PM</mat-chip>
+
+                <mat-chip>8:00 AM</mat-chip>
+                <mat-chip>9:00 AM</mat-chip>
+                <mat-chip>10:00 AM</mat-chip>
+                <mat-chip>11:00 AM</mat-chip>
+                <mat-chip>12:00 PM</mat-chip>
+                <mat-chip>1:00 PM</mat-chip>
+
+                <mat-chip>8:00 AM</mat-chip>
+                <mat-chip>9:00 AM</mat-chip>
+                <mat-chip>10:00 AM</mat-chip>
+                <mat-chip>11:00 AM</mat-chip>
+                <mat-chip>12:00 PM</mat-chip>
+                <mat-chip>1:00 PM</mat-chip>
+              </mat-chip-list>
+
+              <button mat-flat-button color="primary" class="btn-booking">
+                <mat-icon>book_online</mat-icon>
+                Book
+              </button>
+            </mat-tab>
+          </mat-tab-group>
+
         </mat-expansion-panel>
       </mat-accordion>
     </ng-container>

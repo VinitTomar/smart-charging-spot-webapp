@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
-import { MatCardModule, MatListModule, MatDividerModule, MatIconModule, MatButtonModule, MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatDividerModule, MatIconModule, MatButtonModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, MatChipsModule } from '@angular/material';
 import { NewBookingComponent } from './components/new-booking/new-booking.component';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationModule } from '../shared/confirmation/confirmation.module';
@@ -26,7 +26,12 @@ import { PciChargerToTextModule } from '../shared/pci-charger-to-text/pci-charge
     MatFormFieldModule,
     MatInputModule,
     ConfirmationModule,
-    PciChargerToTextModule
+    PciChargerToTextModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonToggleModule,
+    MatChipsModule
   ]
 })
 export class BookingModule { }

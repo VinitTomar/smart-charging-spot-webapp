@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { BookingChargerModel } from '../../models/booking-charger.model';
+import { BookingPointModel } from '../../models/booking-point.model';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -12,13 +14,12 @@ export class NewBookingComponent implements OnInit {
 
   searchInProgress = false;
 
-  get pcisList$() {
-    return this._bookingService.searchedPcis$.pipe(tap(() => this.searchInProgress = false));
+  get bookingChargers$() {
+    return this._bookingService.searchedChargers$.pipe(tap(() => this.searchInProgress = false));
   }
 
   constructor(
     private _bookingService: BookingService,
-    private _cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {

@@ -9,7 +9,17 @@
       display: flex;
       flex-direction: column;
     }
+
+    .mat-tab-body-content {
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
   }
+}
+
+.mat-expansion-panel-header-title {
+  width: 350px;
 }
 
 .no-search {
@@ -31,7 +41,13 @@
 
 .btn {
   &-booking {
+    margin-top: 20px;
     margin-left: auto;
+
+    &--list {
+      margin-top: 0px;
+      ;
+    }
   }
 }
 
@@ -49,5 +65,37 @@
   &-btn {
     margin-left: 20px;
     margin-bottom: 19px;
+  }
+}
+
+.list-icon-with-nested-item {
+  margin-bottom: auto;
+}
+
+.mat-line.list-inner {
+  display: flex;
+  flex-wrap: wrap;
+
+  .mat-list-item {
+    width: unset;
+  }
+}
+
+.mat-button-toggle-group {
+  margin-right: auto;
+}
+
+.available-slots-label {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.mat-chip-list {
+  margin-right: auto;
+
+  ::ng-deep {
+    .mat-chip-list-wrapper {
+      margin-right: auto;
+    }
   }
 }

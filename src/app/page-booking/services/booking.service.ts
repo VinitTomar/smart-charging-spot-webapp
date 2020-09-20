@@ -1,26 +1,29 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { filter, switchMap, tap, map } from 'rxjs/operators';
 import { PciModel } from 'src/app/page-pci/model/pci.model';
 import { BookingStatus } from '../extras/booking-status';
 import { BookingModel } from '../models/booking';
+import { BookingChargerModel } from '../models/booking-charger.model';
 import { BookingDetailModel } from '../models/booking-detail.model';
+import { BookingPointModel } from '../models/booking-point.model';
+import { ChargerBookedSlotModel } from '../models/charger-booked-slot.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
 
-  private _searchedPciSubject = new BehaviorSubject<PciModel[]>([]);
-  get searchedPcis$() {
-    return this._searchedPciSubject.asObservable();
+  private _searchedChargerSubject = new BehaviorSubject<BookingChargerModel[]>([]);
+  get searchedChargers$() {
+    return this._searchedChargerSubject.asObservable();
   }
-  private set _searchedPcis(list: PciModel[]) {
-    this._searchedPciSubject.next(list);
+  private set _searchedChargers(list: BookingChargerModel[]) {
+    this._searchedChargerSubject.next(list);
   }
-  private get _searchedPcis() {
-    return this._searchedPciSubject.value;
+  private get _searchedChargers() {
+    return this._searchedChargerSubject.value;
   }
 
   private _myBookingsSubject = new BehaviorSubject<BookingModel[]>(null);
@@ -50,12 +53,70 @@ export class BookingService {
     })
 
     this._httpClient.get<PciModel[]>('pci', { params })
-      .toPromise().then(list => this._searchedPcis = list);
+      .pipe(
+        switchMap((pcis: PciModel[]) => {
+          return forkJoin(pcis.map(pci => this._bookedCharger(pci)))
+        }),
+        map(arrs => {
+          return arrs.reduce((prev, curr) => {
+            return [...prev, ...curr]
+          });
+        })
+      )
+      .toPromise().then((list) => this._searchedChargers = list);
   }
 
   private _myBooking() {
     this._httpClient.get<BookingModel[]>('booking')
       .toPromise().then(bookings => this._myBookings = bookings);
+  }
+
+  private _bookedCharger(pci: PciModel): Observable<BookingChargerModel[]> {
+    return this._httpClient.get<BookingModel[]>(`pci/${pci._id}/booking`)
+      .pipe(
+        map((bookings: BookingModel[]) => {
+          const bkngChrgs = pci.chargers.map(chrg => {
+
+            const bookedSlotsOfCharger = bookings
+              .filter(bkng => bkng.status === BookingStatus.SUCCESSFULL)
+              .filter(bkng => {
+                return bkng.charger.type === chrg.type && bkng.charger.points === chrg.points
+              })
+              .map(bkng => {
+                const bkdSlog: ChargerBookedSlotModel = {
+                  start: bkng.start,
+                  end: bkng.end,
+                  duration: bkng.duration,
+                  point: bkng.pointerIndex
+                };
+                return bkdSlog;
+              });
+
+            const points: BookingPointModel[] = [];
+
+            for (let i = 0; i < chrg.points; i++) {
+              const point: BookingPointModel = {
+                label: `Point ${i + 1}`,
+                bookedSlots: bookedSlotsOfCharger.filter(slt => slt.point === i + 1)
+              }
+
+              points.push(point);
+            }
+
+            const bkChrg: BookingChargerModel = {
+              ...chrg,
+              pciName: pci.name,
+              pciAddress: pci.address,
+              pciId: pci._id,
+              bookingPoints: points
+            };
+
+            return bkChrg;
+          });
+
+          return bkngChrgs;
+        })
+      );
   }
 
   newBooking(booking: BookingModel) {
