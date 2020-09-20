@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { parseISO } from 'date-fns';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { filter, switchMap, tap, map } from 'rxjs/operators';
 import { PciModel } from 'src/app/page-pci/model/pci.model';
@@ -8,7 +9,7 @@ import { BookingModel } from '../models/booking';
 import { BookingChargerModel } from '../models/booking-charger.model';
 import { BookingDetailModel } from '../models/booking-detail.model';
 import { BookingPointModel } from '../models/booking-point.model';
-import { ChargerBookedSlotModel } from '../models/charger-booked-slot.model';
+import { BookingSlotModel } from '../models/booking-slot.model';
 
 @Injectable({
   providedIn: 'root'
@@ -83,9 +84,9 @@ export class BookingService {
                 return bkng.charger.type === chrg.type && bkng.charger.points === chrg.points
               })
               .map(bkng => {
-                const bkdSlog: ChargerBookedSlotModel = {
-                  start: bkng.start,
-                  end: bkng.end,
+                const bkdSlog: BookingSlotModel = {
+                  start: new Date(bkng.start),
+                  end: new Date(bkng.end),
                   duration: bkng.duration,
                   point: bkng.pointerIndex
                 };

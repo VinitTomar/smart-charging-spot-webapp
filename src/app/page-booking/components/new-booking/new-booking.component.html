@@ -85,17 +85,17 @@
 
 
           <mat-tab-group>
-            <mat-tab *ngFor="let point of chrg.bookingPoints" [label]="point.label">
+            <mat-tab *ngFor="let point of chrg.bookingPoints; index as i;" [label]="point.label">
               <mat-form-field appearance="outline">
                 <mat-label>Booking Date</mat-label>
                 <input matInput [matDatepicker]="picker" placeholder="Choose a date" (click)="picker.open()"
-                  (focus)="picker.open()">
+                  (focus)="picker.open()" [formControl]="getSelectedDateFc(chrg,i)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
               <mat-label>Duration</mat-label>
-              <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle-group [formControl]="getDurationFc(chrg,i)">
                 <mat-button-toggle value="1">1 Hour</mat-button-toggle>
                 <mat-button-toggle value="2">2 Hours</mat-button-toggle>
                 <mat-button-toggle value="3">3 Hours</mat-button-toggle>
@@ -107,37 +107,16 @@
               </mat-button-toggle-group>
 
               <mat-label class="available-slots-label">Available Slots</mat-label>
+
               <mat-chip-list>
-                <mat-chip>8:00 AM</mat-chip>
-                <mat-chip>9:00 AM</mat-chip>
-                <mat-chip>10:00 AM</mat-chip>
-                <mat-chip>11:00 AM</mat-chip>
-                <mat-chip>12:00 PM</mat-chip>
-                <mat-chip>1:00 PM</mat-chip>
-
-                <mat-chip>8:00 AM</mat-chip>
-                <mat-chip>9:00 AM</mat-chip>
-                <mat-chip>10:00 AM</mat-chip>
-                <mat-chip>11:00 AM</mat-chip>
-                <mat-chip>12:00 PM</mat-chip>
-                <mat-chip>1:00 PM</mat-chip>
-
-                <mat-chip>8:00 AM</mat-chip>
-                <mat-chip>9:00 AM</mat-chip>
-                <mat-chip>10:00 AM</mat-chip>
-                <mat-chip>11:00 AM</mat-chip>
-                <mat-chip>12:00 PM</mat-chip>
-                <mat-chip>1:00 PM</mat-chip>
-
-                <mat-chip>8:00 AM</mat-chip>
-                <mat-chip>9:00 AM</mat-chip>
-                <mat-chip>10:00 AM</mat-chip>
-                <mat-chip>11:00 AM</mat-chip>
-                <mat-chip>12:00 PM</mat-chip>
-                <mat-chip>1:00 PM</mat-chip>
+                <mat-chip *ngFor="let slot of getBookingSlots(chrg,i)" [selected]="getSelectedSlotFc(chrg,i) === slot"
+                  [disabled]="!slot.isAvailable" color="accent" (click)="selectSlot(slot,chrg,i)">
+                  {{slot.start | date : 'h:mm a'}} - {{slot.end | date : 'h:mm a'}}
+                </mat-chip>
               </mat-chip-list>
 
-              <button mat-flat-button color="primary" class="btn-booking">
+              <button mat-flat-button color="primary" class="btn-booking" [disabled]="getBookingProgressStatus(chrg,i)"
+                (click)="makeNewBooking(chrg,i)">
                 <mat-icon>book_online</mat-icon>
                 Book
               </button>

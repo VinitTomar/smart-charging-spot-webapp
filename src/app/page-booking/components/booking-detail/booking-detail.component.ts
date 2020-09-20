@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
@@ -46,6 +46,7 @@ export class BookingDetailComponent implements OnInit {
     private _router: Router,
     private _activeRoute: ActivatedRoute,
     private _confirmService: ConfirmationService<BookingModel>,
+    private _cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -56,6 +57,11 @@ export class BookingDetailComponent implements OnInit {
       action: this._bookingService.cancelBooking(booking),
       message: `Are you sure, You want to cancel your booking?`
     }).afterClosed().subscribe(() => {
+      booking.status = BookingStatus.CANCELED;
+      if (this._detail) {
+        this._detail.status = BookingStatus.CANCELED;
+      }
+      this._cdRef.detectChanges();
       subsc.unsubscribe();
     })
   }

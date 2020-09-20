@@ -46,7 +46,6 @@
 
     &--list {
       margin-top: 0px;
-      ;
     }
   }
 }
@@ -91,6 +90,7 @@
 }
 
 .mat-chip-list {
+  margin: 0px 5px;
   margin-right: auto;
 
   ::ng-deep {

@@ -21,7 +21,7 @@
         <mat-list-item *ngFor="let bkng of bookings" (click)="detail(bkng)">
           <mat-icon mat-list-icon>bookmark</mat-icon>
           <h4 mat-line>Status: {{bkng.status}}</h4>
-          <p mat-line> Timing: Starts at {{bkng.start | date}} for {{bkng.duration}} Minutes</p>
+          <p mat-line> Timing: Starts at {{bkng.start | date : 'yyyy-MM-dd, h:mm a'}} for {{bkng.duration}} Minutes</p>
           <button color="warn" mat-icon-button scsStopClickEvent [disabled]="bkng.status === allBookingStatus.CANCELED"
             (click)="cancel(bkng)">
             <mat-icon>cancel_presentation</mat-icon>

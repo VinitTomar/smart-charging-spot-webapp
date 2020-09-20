@@ -6,7 +6,7 @@ export interface BookingModel {
   pciId: string;
   charger: PciChargerModel;
   pointerIndex: number;
-  status: BookingStatus;
+  status?: BookingStatus;
   start: Date;
   end: Date;
   duration: number
