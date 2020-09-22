@@ -1,0 +1,101 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+
+  &::ng-deep {
+    .mat-expansion-panel-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mat-tab-body-content {
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+  }
+}
+
+.mat-expansion-panel-header-title {
+  width: 350px;
+}
+
+.no-search {
+  display: flex;
+  width: 100%;
+  padding: 70px;
+  justify-content: center;
+}
+
+.mat-card {
+  &-header {
+    margin-bottom: 20px;
+  }
+
+  &-content {
+    margin-top: 40px;
+  }
+}
+
+.btn {
+  &-booking {
+    margin-top: 20px;
+    margin-left: auto;
+
+    &--list {
+      margin-top: 0px;
+    }
+  }
+}
+
+.row-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  &-input {
+    width: 270px;
+  }
+
+  &-btn {
+    margin-left: 20px;
+    margin-bottom: 19px;
+  }
+}
+
+.list-icon-with-nested-item {
+  margin-bottom: auto;
+}
+
+.mat-line.list-inner {
+  display: flex;
+  flex-wrap: wrap;
+
+  .mat-list-item {
+    width: unset;
+  }
+}
+
+.mat-button-toggle-group {
+  margin-right: auto;
+}
+
+.available-slots-label {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.mat-chip-list {
+  margin: 0px 5px;
+  margin-right: auto;
+
+  ::ng-deep {
+    .mat-chip-list-wrapper {
+      margin-right: auto;
+    }
+  }
+}

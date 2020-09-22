@@ -1,5 +1,4 @@
 :host {
-  margin-top: 64px;
   display: block;
 }
 
@@ -23,7 +22,7 @@
 }
 
 .mat-toolbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;

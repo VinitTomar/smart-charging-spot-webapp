@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.list-icon-with-nested-item {
+  margin-bottom: auto;
+}
+
+.mat-line.list-inner {
+  display: flex;
+  flex-wrap: wrap;
+
+  .mat-list-item {
+    width: unset;
+  }
+}

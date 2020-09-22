@@ -1,0 +1,84 @@
+<mat-card *ngIf="bookingDetail$ | async as detail">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="card-title-icon">article</mat-icon>
+      Booking details
+    </mat-card-title>
+    <a mat-button color="primary" class="card-header-btn" href="/booking" [routerLink]="['/booking']">
+      <mat-icon>list</mat-icon>
+      List
+    </a>
+    <button mat-button color="warn" class="card-header-btn" (click)="cancelBooking(detail)"
+      [disabled]="detail.status === allBookingStatus.CANCELED">
+      <mat-icon>cancel_presentation</mat-icon>
+      Cancel
+    </button>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-list>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>polymer</mat-icon>
+      <h4 mat-line>{{detail.status}}</h4>
+      <p mat-line>Status</p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>charging_station</mat-icon>
+      <h4 mat-line>Chargers [Booked Point Number: {{detail.pointerIndex}}] </h4>
+      <p mat-line>{{detail.charger | pciChargerToText}}</p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>class</mat-icon>
+      <h4 mat-line>{{detail.pciName}}</h4>
+      <p mat-line>Name </p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>near_me</mat-icon>
+      <h4 mat-line>{{detail.pciHighWay || 'Not located on any highway'}}</h4>
+      <p mat-line>Highway</p>
+    </mat-list-item>
+    <mat-divider inset="true"></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon class="list-icon-with-nested-item">home</mat-icon>
+      <h4 mat-line>Address</h4>
+      <mat-list mat-line class="list-inner">
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.line1}}</h4>
+          <p mat-line>Line1</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.line2}}</h4>
+          <p mat-line>Line2</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.landmark}}</h4>
+          <p mat-line>Landmark</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.district}}</h4>
+          <p mat-line>District</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.state}}</h4>
+          <p mat-line>State</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>{{detail.pciAddress.pincode}}</h4>
+          <p mat-line>Pincode</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-list-item>
+
+  </mat-list>
+
+</mat-card>

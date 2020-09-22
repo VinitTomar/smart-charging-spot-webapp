@@ -4,6 +4,7 @@ import { PciChargerModel } from './pci-charger.model';
 
 export interface PciModel {
   _id?: string;
+  owner?: string;
   name: string;
   highWay: string;
   gpsCoord: GpsCoordinateModel;

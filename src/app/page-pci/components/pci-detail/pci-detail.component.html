@@ -4,7 +4,7 @@
       <mat-icon class="card-title-icon">article</mat-icon>
       Pci details
     </mat-card-title>
-    <a mat-button color="primary" class="card-header-btn" href="/pci/{{pci._id}}/edit" [routerLink]="['/pci']">
+    <a mat-button color="primary" class="card-header-btn" href="/pcit" [routerLink]="['/pci']">
       <mat-icon>list</mat-icon>
       List
     </a>
@@ -40,8 +40,8 @@
           <p mat-line>Latitude</p>
         </mat-list-item>
         <mat-list-item>
-          <h4 mat-line>{{pci.gpsCoord.latitude}}</h4>
-          <p mat-line>Latitude</p>
+          <h4 mat-line>{{pci.gpsCoord.longitude}}</h4>
+          <p mat-line>Longitude</p>
         </mat-list-item>
       </mat-list>
     </mat-list-item>
