@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GlobalLoaderService } from '../services';
 import { finalize } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: "root"
@@ -15,13 +16,14 @@ export class ProxyInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     this._loader.showLoader();
     const newUrl = '/api/' + req.url;
     const newReq: HttpRequest<any> = req.clone({
       setHeaders: {
         'Content-Type': 'application/json'
       },
-      url: newUrl
+      url: environment.origin + newUrl
     });
 
     return next.handle(newReq).pipe(
