@@ -67,6 +67,10 @@ export class BookingService {
       .toPromise().then((list) => this._searchedChargers = list);
   }
 
+  emptySearchResult() {
+    this._searchedChargers = [];
+  }
+
   private _myBooking() {
     this._httpClient.get<BookingModel[]>('booking')
       .toPromise().then(bookings => this._myBookings = bookings);

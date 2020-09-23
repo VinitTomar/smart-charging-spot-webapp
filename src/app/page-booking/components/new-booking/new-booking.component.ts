@@ -58,6 +58,7 @@ export class NewBookingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._newBookingsMap = new WeakMap();
+    this._bookingService.emptySearchResult();
   }
 
   ngOnDestroy() {
@@ -142,11 +143,6 @@ export class NewBookingComponent implements OnInit, OnDestroy {
 
   selectSlot(slot: BookingSlotModel, chrg: BookingChargerModel, index: number) {
     this.getSelectedSlotFc(chrg, index).setValue(slot);
-  }
-
-  deselectSlot(chrg: BookingChargerModel, index: number) {
-    console.log('deselect')
-    this.getSelectedSlotFc(chrg, index).setValue(null);
   }
 
   private _updateNewBookingSlots(chrg: BookingChargerModel, index: number) {
